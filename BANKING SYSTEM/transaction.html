@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>New Transaction</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+</head>
+<body class="bg-dark">
+
+    <nav class="navbar navbar-expand-sm bg-secondary navbar-dark py-3">
+        <div class="container">
+            <a href="#" class="navbar-brand">
+                <img class="img-fluid logo" src="logo-1.png" alt="">
+            </a>
+
+            <div class="ms-auto">
+                <a class="button btn btn-dark" href="index.html">Home</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="bg-dark text-light  text-center text-sm-start home-main ">
+        <div class="container">
+            <div class="d-sm-flex align-items-center justify-content-between">
+                <img class="img-fluid transaction-img" src="money.svg" alt="">
+                <div class="container justify-content-between shadow-lg bg-secondary bg-gradient">
+                <form id="form" action="#" >
+                    <div class="row p-3">
+                    <div class="col">
+                        <input id="amount-box" type="text"  class="form-control" placeholder="Amount" aria-label="Amount" required>
+                      </div>
+                      <div class="col">
+                        <input required id="camount-box" type="text" class="form-control" placeholder="Confirm Amount" aria-label="Confirm Amount">
+                      </div>
+                    </div>
+                    <div class="row p-3">
+                        <div class="col">
+                        <input id="account-box" type="text" class="form-control" placeholder="Account Number" aria-label="Account Number" required>
+                        <div class="error"></div>
+                    </div>
+                    </div>
+                    <div class="row p-3">
+                        <div class="col">
+                        <input required id="caccount-box" type="text" class="form-control" placeholder="Confirm Account Number" aria-label="Confirm Account Number">
+                        <div class="error"></div>
+                    </div>
+                    </div>
+                    <div class="row p-3 ">
+                        <div class="col">
+                            <input required id="name-box" type="text" class="form-control" placeholder="Name" aria-label="Name">
+                        </div>
+                        <div class="col">
+                            <select id="status" aria-label="Purpose" class="form-control">
+                                <option value="Payment">Payment</option>
+                                <option value="Deposit">Deposit</option>
+                                <option value="Deposit">Gift</option>
+                                <option value="None">None</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+
+                    <div class="row p-3">
+                        <div class="col">
+                            <button id="insBtn" type="submit"   class="form-control btn btn-dark">click</button>
+                        </div>
+                    </div>
+                    
+                </form>   
+                </div>
+            </div>
+        </div>
+
+
+
+    </section>
+
+    <footer class="p-5 bg-dark text-white text-center position-relative">
+        <div class="container">
+            <p class="lead">Created by <span class="text-warning">SNEKAN B</span> </p>
+          <p class="lead">Copyright &copy; 2023 GRIP</p>
+    
+          <a href="#" class="position-absolute bottom-0 end-0 p-5">
+            <i class="bi bi-arrow-up-circle h1"></i>
+          </a>
+        </div>
+      </footer>
+
+      
+    <script type="module">
+       
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+        const firebaseConfig = {
+          apiKey: "AIzaSyDiZwschuLrLSVwE8FcEF_vLB15XYHmxXU",
+          authDomain: "bankdb-573fc.firebaseapp.com",
+          projectId: "bankdb-573fc",
+          storageBucket: "bankdb-573fc.appspot.com",
+          messagingSenderId: "409091237687",
+          appId: "1:409091237687:web:520f1a3b8e97fee6a89cb2"
+        };
+
+       
+
+
+        
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+
+        import{getDatabase,ref,set,child,update,remove}
+        from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
+
+        const db=getDatabase();
+
+        var amount;
+        var camount;
+        var account;
+        var caccount;
+        var name;
+        var status;
+        var button;
+
+        document.getElementById('form').addEventListener("submit",getdetails)
+        function getdetails(e)
+        {
+
+            e.preventDefault();
+
+
+         amount=document.getElementById("amount-box");
+         camount=document.getElementById("camount-box");
+         account=document.getElementById("account-box");
+         caccount=document.getElementById("caccount-box");
+         name=document.getElementById("name-box");
+         status=document.getElementById("status");
+         button=document.getElementById("insBtn");
+
+         function Insertdata()
+{
+    set(ref(db,"TheCustomer/"+name.value),
+    {
+        Amount:amount.value,
+        ConfirmedAmount:camount.value,
+        Account:account.value,
+        ConfirmedAccount:caccount.value,
+        Name:name.value,
+        status:status.value
+    })
+    .then(()=>
+    {
+        alert("Data Stored Successfully");
+    })
+    .catch((error)=>
+    {
+        alert("unsuccessful,error"+error);
+    })
+
+}
+
+document.getElementById('insBtn').addEventListener('click',Insertdata);
+
+        }
+
+
+      </script> 
+
+      
+
+<script src="app.js"></script>
+
+
+</body>
+</html>

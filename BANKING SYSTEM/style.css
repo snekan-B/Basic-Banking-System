@@ -1,0 +1,56 @@
+.home-img
+{
+    width: 500px;
+    height: 50px;
+    border-radius: 15px;
+}
+
+.home-main
+{
+    padding-top:90px ;
+    padding-bottom:70px; 
+}
+
+.logo
+{
+    height: 60px;
+    width: 70px;
+    border-radius: 10px;
+}
+
+.trans-img
+{
+    height: 60px;
+    width: 60px;
+}
+
+.button
+{
+    margin-left: 90px;
+    margin-right: 90px ;
+}
+.word
+{
+    color: white !important;
+}
+
+/*transaction page*/
+.transaction-img
+{
+    width: 40em;
+    height:40em;
+}
+
+.trans-button
+{
+    margin-left: 220px;
+    margin-right: 220px ;
+}
+
+
+/*transaction page*/
+
+.trans-table
+{
+    margin-top: 90px;
+}
